@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <!-- viewport-fit=cover: рисуем до краёв экрана iPhone, отступы под "чёлку" — в style.css -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Расписание</title>
+
+  <!-- Веб-версия (PWA). В APK этих файлов нет — браузер WebView просто пропустит ссылки -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <!-- iPhone: при запуске с экрана "Домой" — без адресной строки Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Расписание">
+  <!-- Строка состояния iOS: "default" — iOS сам рисует её светлой/тёмной под тему системы.
+       ("black-translucent" дал бы всегда белый текст — на светлой теме его не видно) -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#F3F4F7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101217" media="(prefers-color-scheme: dark)">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Всё содержимое рисует app.js: один экран за раз -->
+  <div id="app"></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <!-- Порядок важен: логика -> данные -> интерфейс -->
+  <script src="core.js"></script>
+  <script src="schedule-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
