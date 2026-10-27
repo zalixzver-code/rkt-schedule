@@ -51,7 +51,11 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== self.location.origin) return;
+  // Переходы на другие страницы сайта (например, shop/) — не наши, пусть идут в сеть
+  const root = new URL(self.registration.scope).pathname;
+  if (req.mode === 'navigate' && url.pathname !== root && url.pathname !== root + 'index.html') return;
 
   event.respondWith(
     caches.open(CACHE).then((cache) =>
