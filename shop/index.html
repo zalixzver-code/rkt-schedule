@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="TKAN — демо онлайн-магазина одежды для портфолио">
+  <title>TKAN — магазин одежды</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="promo">Бесплатная доставка от 7 000 ₽ · Примерка перед оплатой</div>
+
+  <header class="header">
+    <div class="wrap header__row">
+      <a class="logo" href="#top">TKAN</a>
+      <nav class="nav" aria-label="Разделы">
+        <a href="#catalog">Каталог</a>
+        <a href="#lookbook">Лукбук</a>
+        <a href="#about">О бренде</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Сменить тему">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+        </button>
+        <button class="icon-btn" id="favBtn" type="button" aria-label="Избранное">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>
+          <span class="badge" id="favCount" hidden>0</span>
+        </button>
+        <button class="icon-btn" id="cartBtn" type="button" aria-label="Корзина">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="badge" id="cartCount" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="eyebrow">Коллекция осень — зима 2026</p>
+          <h1>Одежда, которую хочется носить каждый день</h1>
+          <p class="lead">Натуральные ткани, спокойные цвета и крой, который не выходит из моды. Шьём небольшими партиями.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#catalog">Смотреть каталог</a>
+            <a class="btn btn--ghost" href="#lookbook">Лукбук</a>
+          </div>
+          <ul class="hero__stats">
+            <li><b>12</b> моделей в коллекции</li>
+            <li><b>4,9</b> средняя оценка</li>
+            <li><b>2 дня</b> доставка по городу</li>
+          </ul>
+        </div>
+        <div class="hero__art" id="heroArt" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="features wrap" aria-label="Преимущества">
+      <div class="feature"><b>Примерка</b><span>Оплата после примерки — заберите только то, что подошло</span></div>
+      <div class="feature"><b>Возврат 30 дней</b><span>Без вопросов, курьер заберёт сам</span></div>
+      <div class="feature"><b>Натуральные ткани</b><span>Хлопок, лён и шерсть от проверенных фабрик</span></div>
+    </section>
+
+    <section class="catalog wrap" id="catalog">
+      <div class="section-head">
+        <h2>Каталог</h2>
+        <p class="muted" id="resultCount"></p>
+      </div>
+
+      <div class="toolbar">
+        <div class="chips" id="catChips" role="tablist" aria-label="Категории"></div>
+        <div class="toolbar__right">
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>
+            <input id="searchInput" type="search" placeholder="Поиск" aria-label="Поиск по каталогу">
+          </label>
+          <select id="sortSelect" aria-label="Сортировка">
+            <option value="popular">Сначала популярные</option>
+            <option value="price-asc">Сначала дешевле</option>
+            <option value="price-desc">Сначала дороже</option>
+            <option value="sale">Со скидкой</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+      <p class="empty" id="emptyState" hidden>Ничего не нашлось. Попробуйте другой запрос или категорию.</p>
+    </section>
+
+    <section class="lookbook" id="lookbook">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Лукбук</h2>
+          <p class="muted">Три образа из новой коллекции</p>
+        </div>
+        <div class="looks" id="looks"></div>
+      </div>
+    </section>
+
+    <section class="about wrap" id="about">
+      <div class="about__text">
+        <p class="eyebrow">О бренде</p>
+        <h2>Меньше вещей — больше сочетаний</h2>
+        <p>TKAN — небольшая студия, которая делает базовый гардероб: вещи, которые легко сочетаются друг с другом и служат несколько сезонов. Мы сами выбираем ткани, отшиваем модели небольшими тиражами и не устраиваем бесконечных распродаж.</p>
+        <p class="muted small">Это демонстрационный сайт для портфолио. Бренд и товары вымышлены, заказы не обрабатываются.</p>
+      </div>
+      <div class="reviews">
+        <figure class="review">
+          <blockquote>«Худи ношу уже третий сезон — как новое. Заказала ещё одно в другом цвете».</blockquote>
+          <figcaption>Анна, Москва · ★★★★★</figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote>«Джинсы села идеально с первого раза, таблица размеров не врёт».</blockquote>
+          <figcaption>Дмитрий, Казань · ★★★★★</figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote>«Курьер подождал, пока я всё примерю. Оставила пальто, кеды вернула».</blockquote>
+          <figcaption>Мария, Санкт-Петербург · ★★★★☆</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="subscribe">
+      <div class="wrap subscribe__row">
+        <div>
+          <h2>−10% на первый заказ</h2>
+          <p>Подпишитесь на рассылку — пишем раз в месяц, только о новинках.</p>
+        </div>
+        <form class="subscribe__form" id="subscribeForm">
+          <input type="email" required placeholder="you@example.com" aria-label="Электронная почта">
+          <button class="btn btn--light" type="submit">Подписаться</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacts">
+    <div class="wrap footer__grid">
+      <div>
+        <a class="logo" href="#top">TKAN</a>
+        <p class="muted small">Демо-проект для портфолио, 2026</p>
+      </div>
+      <div>
+        <h3>Покупателям</h3>
+        <ul><li>Доставка и оплата</li><li>Возврат</li><li>Таблица размеров</li></ul>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <ul><li>8 800 000-00-00</li><li>hello@tkan.example</li><li>Ежедневно 10:00–21:00</li></ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Карточка товара -->
+  <dialog class="modal" id="productModal" aria-labelledby="pmTitle">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div class="pm" id="pmBody"></div>
+  </dialog>
+
+  <!-- Корзина: боковая панель -->
+  <dialog class="drawer" id="cartDrawer" aria-labelledby="cartTitle">
+    <div class="drawer__head">
+      <h2 id="cartTitle">Корзина</h2>
+      <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    </div>
+    <div class="drawer__body" id="cartBody"></div>
+    <div class="drawer__foot" id="cartFoot"></div>
+  </dialog>
+
+  <!-- Оформление заказа (демо: ничего не отправляется) -->
+  <dialog class="modal modal--narrow" id="checkoutModal" aria-labelledby="coTitle">
+    <button class="modal__close" type="button" data-close aria-label="Закрыть">×</button>
+    <div id="checkoutBody"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
